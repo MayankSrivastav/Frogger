@@ -2,7 +2,7 @@
 var Enemy = function(x, y, speed) {
     this.x = x;
     this.y = y;
-    this.speed = speed;   
+    this.speed = speed;
     this.sprite = 'images/enemy-bug.png';
 };
 
@@ -35,9 +35,11 @@ var Player = function(x, y, speed) {
 // a handleInput() method.
 Player.prototype.update = function() {
     if (this.y === 0) {
-        console.log("You Win!!!");
+        console.log("You Won!!!");
+        alert("You Won!!! Press OK to continue");
+        
         this.x = 202.5;
-        this.y = 383;
+        this.y = 383;        
     } else {
         this.checkCollisions(allEnemies);
     }
@@ -51,13 +53,14 @@ Player.prototype.checkCollisions = function(enemies) {
     if (this.y !== 0) {
         for (var i = 0; i < enemies.length; ++i) {
             var thisEnemey = enemies[i];
-            if (player.x <= thisEnemey.x + 40 &&
+            if (player.x <= thisEnemey.x + 50 &&
                 player.y <= thisEnemey.y + 40 &&
-                thisEnemey.x <= player.x + 40 &&
+                thisEnemey.x <= player.x + 50 &&
                 thisEnemey.y <= player.y + 40) {
                 console.log("Game over :(");
                 this.x = 202.5;
                 this.y = 383;
+                break;
             }
         }
     }
